@@ -1,9 +1,10 @@
 import React from 'react'
+import arrow from '../../assets/arrow.svg';
 
-const RightArrow = ({ nextSlide, coolButtons }) => {
+const RightArrow = ({ nextSlide, disabled }) => {
   return (
-    <div className={coolButtons ? 'right-arrow cool-buttons' : 'right-arrow'} onClick={nextSlide}>
-      <img src="img/slider-right-arrow.svg" />
+    <div className='right-arrow' onClick={nextSlide}>
+      <img src={arrow} alt="right arrow"/>
     </div>
   )
 }

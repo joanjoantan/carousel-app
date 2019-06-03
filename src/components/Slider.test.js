@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Slider from './Slider';
 
-it('renders App without crashing', () => {
+it('renders slider without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<Slider />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

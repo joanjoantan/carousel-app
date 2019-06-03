@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import Slide from './components/Slide/slide'
-import './components/slider.css'
+import Slide from './Slide/slide'
+// import LeftArrow from './Arrows/left-arrow'
+// import RightArrow from './Arrows/right-arrow'
+
+import './slider.css'
 
 export class Slider extends Component {
   constructor () {
@@ -44,10 +47,10 @@ export class Slider extends Component {
   }
 
   playCarousel = () => {
-    let cnt = document.querySelector('.slider');
-    let css = `transform: translateX(${this.state.currentTransform}%)`;
+    let cnt = document.querySelector('.slider')
+    let css = `transform: translateX(${this.state.currentTransform}%)`
 
-    cnt.setAttribute('style', css);
+    cnt.setAttribute('style', css)
 
   }
 
@@ -58,9 +61,9 @@ export class Slider extends Component {
       return {
         ...state,
         currentIndex: newIndex,
-        currentTransform: `-${this.state.currentIndex* 20}`
+        currentTransform: `-${this.state.currentIndex * 20}`
       }
-    }, () => this.playCarousel());
+    }, () => this.playCarousel())
   }
 
   prevSlide = () => {
@@ -72,12 +75,12 @@ export class Slider extends Component {
         currentIndex: newIndex,
         currentTransform: `${parseInt(this.state.currentTransform) + parseInt(20)}`
       }
-    }, () => this.playCarousel());
+    }, () => this.playCarousel())
   }
 
   render () {
 
-    const {error, loading, currentIndex, slide} = this.state
+    const {error, loading, currentIndex, slide, currentTransform} = this.state
 
     if (error) {
       return error
@@ -86,9 +89,12 @@ export class Slider extends Component {
     } else {
       return (
         <div>
-
           <div className="sliders">
-            <ul className="slider">
+            <ul className="slider"
+                style={{
+                  transform: `translateX(${currentTransform}px)`,
+                  transition: 'transform ease-out 0.45s'
+                }}>
               {this.renderSlides()}
             </ul>
           </div>
@@ -97,13 +103,25 @@ export class Slider extends Component {
             onClick={() => this.prevSlide()}
             disabled={currentIndex === 1}
             className="buttonController"
-          >Prev</button>
+          >Prev
+          </button>
 
           <button
             onClick={() => this.nextSlide()}
-            disabled={currentIndex === slide.length-1}
+            disabled={currentIndex === slide.length - 1}
             className="buttonController"
-          >Next</button>
+          >Next
+          </button>
+
+          {/*<LeftArrow
+            prevSlide={this.prevSlide}
+            disabled={currentIndex === 1}
+          />
+
+          <RightArrow
+            nextSlide={this.nextSlide}
+            disabled={currentIndex === slide.length - 1}
+          />*/}
 
         </div>
       )
@@ -111,6 +129,6 @@ export class Slider extends Component {
 
   }
 
-} // End Class
+}
 
 export default Slider

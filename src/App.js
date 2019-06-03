@@ -1,25 +1,14 @@
-import React, { Component } from 'react'
-import Slider from './Slider'
+import React from 'react'
+import Slider from './components/Slider'
 
-// class component
-class App extends Component {
+const App = () => (
+  <div className="App">
+    <header>
+      <h1>Carousel Test</h1>
+    </header>
 
-  constructor (props) {
-    super(props)
-
-  }
-
-  render () {
-    return (
-      <div className="App">
-        <section>
-          <h1>Carousel Test</h1>
-        </section>
-
-        <Slider/>
-      </div>
-    )
-  }
-}
+    <Slider/>
+  </div>
+)
 
 export default App
