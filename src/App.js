@@ -1,14 +1,18 @@
 import React from 'react'
 import Slider from './components/Slider'
 
-const App = () => (
-  <div className="App">
-    <header>
-      <h1>Carousel Test</h1>
-    </header>
+import Container from '@material-ui/core/Container';
+import './App.css'
 
-    <Slider/>
-  </div>
+const App = () => (
+  <React.Fragment>
+    <Container fixed>
+      <header>
+        <h1>Carousel Test</h1>
+      </header>
+      <Slider/>
+    </Container>
+  </React.Fragment>
 )
 
 export default App

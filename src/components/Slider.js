@@ -15,6 +15,7 @@ export class Slider extends Component {
       currentSlide: [],
       currentIndex: 1,
       currentTransform: null,
+      previewWidth: 100,
     }
   }
 
@@ -41,41 +42,38 @@ export class Slider extends Component {
       <Slide
         key={i}
         item={slide[i]}
-        isShowing={this.state.currentSlide === i}
+        isShowing={this.state.currentIndex === i}
       />
     )
-  }
-
-  playCarousel = () => {
-    let cnt = document.querySelector('.slider')
-    let css = `transform: translateX(${this.state.currentTransform}%)`
-
-    cnt.setAttribute('style', css)
-
   }
 
   nextSlide = () => {
     this.setState(state => {
       const newIndex = state.currentIndex + 1
+      const {slide} = state
 
+      console.log('slide', slide[newIndex].previewWidth);
       return {
         ...state,
+        currentSlide: slide[newIndex],
         currentIndex: newIndex,
-        currentTransform: `-${this.state.currentIndex * 20}`
+        currentTransform: `-${parseInt(200 * newIndex)}`
       }
-    }, () => this.playCarousel())
+    })
   }
 
   prevSlide = () => {
     this.setState(state => {
       const newIndex = state.currentIndex - 1
+      const {slide, currentTransform} = state
 
       return {
         ...state,
+        currentSlide: slide[newIndex],
         currentIndex: newIndex,
-        currentTransform: `${parseInt(this.state.currentTransform) + parseInt(20)}`
+        currentTransform: `${parseInt(currentTransform) + parseInt(200* newIndex)}`
       }
-    }, () => this.playCarousel())
+    })
   }
 
   render () {
@@ -88,7 +86,7 @@ export class Slider extends Component {
       return 'loading..'
     } else {
       return (
-        <div>
+        <React.Fragment>
           <div className="sliders">
             <ul className="slider"
                 style={{
@@ -123,7 +121,7 @@ export class Slider extends Component {
             disabled={currentIndex === slide.length - 1}
           />*/}
 
-        </div>
+        </React.Fragment>
       )
     }
 
