@@ -15,7 +15,6 @@ export class Slider extends Component {
       currentSlide: [],
       currentIndex: 1,
       currentTransform: null,
-      previewWidth: 100,
     }
   }
 
@@ -52,12 +51,11 @@ export class Slider extends Component {
       const newIndex = state.currentIndex + 1
       const {slide} = state
 
-      console.log('slide', slide[newIndex].previewWidth);
       return {
         ...state,
         currentSlide: slide[newIndex],
         currentIndex: newIndex,
-        currentTransform: `-${parseInt(200 * newIndex)}`
+        currentTransform: `-${parseInt(150 * state.currentIndex)}`
       }
     })
   }
@@ -71,7 +69,7 @@ export class Slider extends Component {
         ...state,
         currentSlide: slide[newIndex],
         currentIndex: newIndex,
-        currentTransform: `${parseInt(currentTransform) + parseInt(200* newIndex)}`
+        currentTransform: `${parseInt(currentTransform) + parseInt(150)}`
       }
     })
   }
@@ -106,7 +104,7 @@ export class Slider extends Component {
 
           <button
             onClick={() => this.nextSlide()}
-            disabled={currentIndex === slide.length - 1}
+            disabled={currentIndex === slide.length}
             className="buttonController"
           >Next
           </button>
